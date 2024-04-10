@@ -10,5 +10,7 @@
     <select id="login" parameterType="member" resultType="member">
         select userEmail from user where userEmail = #{userEmail} and userPw = #{userPw}
     </select>
-
+    <select id="userList" resultType="member">
+        select * from user
+    </select>
 </mapper>

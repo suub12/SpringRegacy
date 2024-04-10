@@ -4,16 +4,18 @@ import com.test.project.dto.MemberDTO;
 import com.test.project.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 의존성 주입
 public class MemberController {
 
     private final MemberService memberService;
@@ -45,6 +47,13 @@ public class MemberController {
         }else{
             return "login";
         }
+    }
 
+    @GetMapping("/userList")
+    public String userList(Model model){
+        List<MemberDTO> memberDTOList = memberService.getUserList();
+        model.addAttribute("userList", memberDTOList);
+        System.out.println(memberDTOList);
+        return "userList";
     }
 }

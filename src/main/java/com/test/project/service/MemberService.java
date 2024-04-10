@@ -5,6 +5,8 @@ import com.test.project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -21,5 +23,9 @@ public class MemberService {
         }else{
             return false;
         }
+    }
+
+    public List<MemberDTO> getUserList(){
+        return memberRepository.getUserList();
     }
 }
