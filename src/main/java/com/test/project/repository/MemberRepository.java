@@ -22,4 +22,12 @@ public class MemberRepository {
     public List<MemberDTO> getUserList(){
         return sql.selectList("Member.userList");
     }
+
+    public MemberDTO getUserInfo(Long id){
+        return sql.selectOne("Member.userInfo", id);
+    }
+
+    public void delete(Long id){
+        sql.delete("Member.delete",id);
+    }
 }

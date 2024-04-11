@@ -28,4 +28,13 @@ public class MemberService {
     public List<MemberDTO> getUserList(){
         return memberRepository.getUserList();
     }
+
+    public MemberDTO getUserInfo(Long id){
+        return memberRepository.getUserInfo(id);
+    }
+    public void delete(Long id){
+        memberRepository.delete(id);
+    }
+
+
 }

@@ -5,10 +5,7 @@ import com.test.project.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -48,12 +45,27 @@ public class MemberController {
             return "login";
         }
     }
-
+    // 유저 리스트 조회
     @GetMapping("/userList")
     public String userList(Model model){
         List<MemberDTO> memberDTOList = memberService.getUserList();
         model.addAttribute("userList", memberDTOList);
         System.out.println(memberDTOList);
         return "userList";
+    }
+    // 유저 정보 조회
+    @GetMapping
+    public String userInfo(@RequestParam Long id, Model model){
+        MemberDTO userInfo = memberService.getUserInfo(id);
+        System.out.println("userInfo :" + userInfo);
+        model.addAttribute("member",userInfo);
+        return "userInfo";
+    }
+
+    @GetMapping("delete")
+    public String delete(@RequestParam("id") Long id){
+        memberService.delete(id);
+        return "redirect:/";
+
     }
 }

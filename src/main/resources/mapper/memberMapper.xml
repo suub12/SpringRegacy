@@ -13,4 +13,12 @@
     <select id="userList" resultType="member">
         select * from user
     </select>
+
+    <select id="userInfo" parameterType="Long" resultType="member">
+        select * from user where id=#{id}
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from user where id=#{id}
+    </delete>
 </mapper>
