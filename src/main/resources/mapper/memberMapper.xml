@@ -21,4 +21,12 @@
     <delete id="delete" parameterType="Long">
         delete from user where id=#{id}
     </delete>
+
+    <select id="userDetailInfo" parameterType="Object" resultType="member">
+        select * from user where userEmail = #{userEmail}
+    </select>
+
+    <update id="updateUserInfo" parameterType="member">
+        update user set userName = #{userName}, userPhoneNumber = #{userPhoneNumber}, userAge = #{userAge} where userEmail = #{userEmail}
+    </update>
 </mapper>

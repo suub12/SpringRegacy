@@ -36,5 +36,13 @@ public class MemberService {
         memberRepository.delete(id);
     }
 
+    public MemberDTO getUserDetailInfo(Object userEmail){
+        return memberRepository.getUserDetailInfo(userEmail);
+    }
+
+    public int updateUserInfo(MemberDTO memberDTO){
+        return memberRepository.updateUserInfo(memberDTO);
+    }
+
 
 }

@@ -66,6 +66,20 @@ public class MemberController {
     public String delete(@RequestParam("id") Long id){
         memberService.delete(id);
         return "redirect:/";
-
     }
+    @GetMapping("update")
+    public String update(HttpSession session,Model model){
+        Object userMail = session.getAttribute("userEmail");
+        MemberDTO userInfo = memberService.getUserDetailInfo(userMail);
+        model.addAttribute("member", userInfo);
+        return "update";
+    }
+
+    @PostMapping("update")
+    public String update(@ModelAttribute MemberDTO memberDTO){
+        memberService.updateUserInfo(memberDTO);
+        System.out.println(memberDTO.getId());
+        return "redirect:/member?id="+memberDTO.getId();
+    }
+
 }
